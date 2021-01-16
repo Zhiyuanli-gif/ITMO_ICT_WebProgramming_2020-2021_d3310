@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Система бронирования авиакомпаний</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    {% load static %}
+    <style>
+        body {
+            /*background: url("../../static/img/flight-bg.jpg");*/
+            background: url("{% static 'img/flight-bg1.jpg' %}");
+            background-size: cover; /*自适应浏览器*/
+        }
+    </style>
+
+</head>
+<body>
+
+<!--导航条适应背景色-->
+{#<nav class="navbar nav-divider">#}
+{#    <div class="container-fluid" style="margin-top: 10px">#}
+{#        <div class="navbar-header">#}
+{#            <a class="navbar-brand" href="" style="color: ghostwhite; font-size: 50px;">CSU Airlines</a>#}
+{#        </div>#}
+{#        <div class="navbar-right">#}
+{#            <a class="navbar-brand" href="" style="color: ghostwhite; font-size: 24px;">LOG IN</a>#}
+{#        </div>#}
+{##}
+{#    </div>#}
+{#</nav>#}
+
+<div class="container-fluid" style="position:absolute;margin-top:10%;width: 35%;left: 5%">
+    <h1 style="color: white">Where are we flying now ?</h1>
+    <br>
+    <form class="form-horizontal" role="form" action="{% url 'booksystem:result' %}" method="post">
+        {% csrf_token %}
+        <div class="input-group">
+            <label for="leave_city" class="input-group-addon">Departure city</label>   <!--input必须要指定name-->
+            <select id="leave_city" type="text" name="leave_city" class="form-control" placeholder="City">
+                <option value="">Пожалуйста, выберите город, из которого вы хотите вылететь</option>
+                <option value="长沙">长沙</option>
+                </select>
+        </div>
+        <br>
+        <div class="input-group">
+            <label for="arrive_city" class="input-group-addon">Arrival city</label>
+            <select id="arrive_city" type="text" name="arrive_city" class="form-control" placeholder="City">
+                <option value="">Пожалуйста, выберите город, в который хотите добраться</option>
+                <option value="北京">北京</option>
+                <option value="上海" >上海</option>
+                <option value="广州">广州</option>
+                <option value="厦门">厦门</option>
+                <option value="成都" >成都</option>
+                <option value="西安">西安</option>
+            </select>
+        </div>
+        <br>
+        <div class="input-group">
+            <label for="leave_date" class="input-group-addon">Departure date</label>
+            <input id="leave_date" type="date" name="leave_date" class="form-control" placeholder="Date">
+        </div>
+        <br>
+        <center>
+            <button type="submit" class="btn btn-success">Let's Go</button>
+        </center>
+    </form>
+</div>
+
+</body>
+</html>
